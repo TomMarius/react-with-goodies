@@ -1,6 +1,7 @@
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const path = require('path');
 
+/** @type {(env: any, argv: { mode: string }) => import('webpack').Configuration} */
 module.exports = (_, { mode }) => {
     console.log('Webpack mode:', mode);
 

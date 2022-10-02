@@ -13,7 +13,7 @@ const createRouter =
         ? createHashRouter
         : createBrowserRouter;
 
-export const router = createRouter(
+const router = createRouter(
     routes.map((route) => ({
         path: route.path,
         element: route.lazy

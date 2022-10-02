@@ -1,8 +1,26 @@
+import { createElement, lazy } from 'react';
 import { createRoot } from 'react-dom/client';
-import { RouterProvider } from 'react-router-dom';
+import {
+    createBrowserRouter,
+    createHashRouter,
+    RouterProvider,
+} from 'react-router-dom';
 
-import { router } from './router';
+import { routes } from './routes';
 
-const container = document.getElementById('root')!;
-const root = createRoot(container);
+const createRouter =
+    process.env.NODE_ENV === 'development'
+        ? createHashRouter
+        : createBrowserRouter;
+
+export const router = createRouter(
+    routes.map((route) => ({
+        path: route.path,
+        element: route.lazy
+            ? createElement(lazy(route.lazy))
+            : route.element ?? <></>,
+    })),
+);
+
+const root = createRoot(document.getElementById('root')!);
 root.render(<RouterProvider router={router} />);

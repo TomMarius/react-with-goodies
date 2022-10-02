@@ -1,5 +1,3 @@
-import { type ReactElement } from 'react';
-
-export function HomePage(): ReactElement {
+export default function HomePage() {
     return <>Hello worlds!</>;
 }

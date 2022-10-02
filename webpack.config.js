@@ -1,24 +1,58 @@
 const path = require('path');
 
-module.exports = {
-    entry: path.resolve(__dirname, 'source', 'main.tsx'),
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
-    output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'build'),
-    },
+module.exports = (_, { mode }) => {
+    console.log('Webpack mode:', mode);
 
-    module: {
-        rules: [
-            {
-                test: /\.tsx?$/,
-                use: 'swc-loader',
-                exclude: /node_modules/,
-            },
-        ],
-    },
+    const isDevelopment = mode === 'development';
+    const plugins = [];
 
-    resolve: {
-        extensions: ['.tsx', '.ts', '.js'],
-    },
+    if (isDevelopment) {
+        plugins.push(new ReactRefreshWebpackPlugin());
+    }
+
+    return {
+        entry: path.resolve(__dirname, 'source', 'main.tsx'),
+
+        output: {
+            filename: 'bundle.js',
+            path: path.resolve(__dirname, 'build'),
+        },
+
+        resolve: {
+            extensions: ['.tsx', '.ts', '.jsx', '.js'],
+        },
+
+        module: {
+            rules: [
+                {
+                    test: /\.[jt]sx?$/,
+                    exclude: /node_modules/,
+                    use: [
+                        {
+                            loader: 'swc-loader',
+                            options: {
+                                jsc: {
+                                    target: 'es2022',
+                                    parser: {
+                                        syntax: 'typescript',
+                                        dynamicImport: true,
+                                    },
+                                    transform: {
+                                        react: {
+                                            runtime: 'automatic',
+                                            refresh: isDevelopment,
+                                        },
+                                    },
+                                },
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
+
+        plugins,
+    };
 };

@@ -4,6 +4,7 @@
         "name": "Garak",
         "email": "plain.simple@tailor.dev"
     },
+    "license": "UNLICENSED",
     "scripts": {
         "build": "rm -rf ./build && webpack --mode production && cp ./public/* ./build",
         "dev": "webpack-dev-server --mode development"

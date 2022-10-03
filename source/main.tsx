@@ -7,8 +7,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { routes } from './routes';
 
-const queryClient = new QueryClient();
-
 const router = createBrowserRouter(
     routes.map((route) => ({
         path: route.path,
@@ -19,7 +17,7 @@ const router = createBrowserRouter(
 );
 
 createRoot(document.getElementById('root')!).render(
-    <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={new QueryClient()}>
         <RouterProvider router={router} />
     </QueryClientProvider>,
 );

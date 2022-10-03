@@ -2,20 +2,14 @@ import './style.css';
 
 import { createElement, lazy } from 'react';
 import { createRoot } from 'react-dom/client';
-import {
-    createBrowserRouter,
-    createHashRouter,
-    RouterProvider,
-} from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { routes } from './routes';
 
-const createRouter =
-    process.env.NODE_ENV === 'development'
-        ? createHashRouter
-        : createBrowserRouter;
+const queryClient = new QueryClient();
 
-const router = createRouter(
+const router = createBrowserRouter(
     routes.map((route) => ({
         path: route.path,
         element: route.lazy
@@ -24,5 +18,8 @@ const router = createRouter(
     })),
 );
 
-const root = createRoot(document.getElementById('root')!);
-root.render(<RouterProvider router={router} />);
+createRoot(document.getElementById('root')!).render(
+    <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+    </QueryClientProvider>,
+);

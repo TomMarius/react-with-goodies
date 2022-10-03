@@ -1,18 +1,28 @@
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 const path = require('path');
+
+const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 
 /** @type {(env: any, argv: { mode: string }) => import('webpack').Configuration} */
 module.exports = (_, { mode }) => {
     console.log('Webpack mode:', mode);
 
     const isDevelopment = mode === 'development';
-    const plugins = [];
+
+    const plugins = [
+        new MiniCSSExtractPlugin({
+            filename: 'style.css',
+            chunkFilename: 'style.css',
+        }),
+    ];
 
     if (isDevelopment) {
         plugins.push(new ReactRefreshWebpackPlugin());
     }
 
     return {
+        plugins,
+
         entry: path.resolve(__dirname, 'source', 'main.tsx'),
 
         output: {
@@ -21,7 +31,7 @@ module.exports = (_, { mode }) => {
         },
 
         resolve: {
-            extensions: ['.tsx', '.ts', '.jsx', '.js'],
+            extensions: ['.tsx', '.ts', '.jsx', '.js', '.css'],
         },
 
         module: {
@@ -50,9 +60,15 @@ module.exports = (_, { mode }) => {
                         },
                     ],
                 },
+                {
+                    test: /\.css$/i,
+                    use: [
+                        MiniCSSExtractPlugin.loader,
+                        'css-loader',
+                        'postcss-loader',
+                    ],
+                },
             ],
         },
-
-        plugins,
     };
 };

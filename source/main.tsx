@@ -1,3 +1,5 @@
+import './style.css';
+
 import { createElement, lazy } from 'react';
 import { createRoot } from 'react-dom/client';
 import {

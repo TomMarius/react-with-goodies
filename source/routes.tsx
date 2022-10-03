@@ -9,6 +9,6 @@ interface Route {
 export const routes: Route[] = [
     {
         path: '/',
-        lazy: () => import('./pages/home'),
+        lazy: () => import('@pages/home'),
     },
 ];

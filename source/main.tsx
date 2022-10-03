@@ -1,4 +1,4 @@
-import './style.css';
+import './global.css';
 
 import { createElement, lazy } from 'react';
 import { createRoot } from 'react-dom/client';

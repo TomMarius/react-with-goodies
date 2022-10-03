@@ -24,13 +24,6 @@ module.exports = (_, { mode }) => {
     }
 
     return {
-        plugins,
-
-        resolve: {
-            extensions,
-            plugins: [new TSConfigPathsWebpackPlugin({ extensions })],
-        },
-
         entry: path.resolve(__dirname, 'source', 'main.tsx'),
 
         output: {
@@ -73,6 +66,18 @@ module.exports = (_, { mode }) => {
                     ],
                 },
             ],
+        },
+
+        plugins,
+
+        resolve: {
+            extensions,
+            plugins: [new TSConfigPathsWebpackPlugin({ extensions })],
+        },
+
+        devServer: {
+            port: 3000,
+            historyApiFallback: { index: '/index.html' },
         },
     };
 };

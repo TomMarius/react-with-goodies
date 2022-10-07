@@ -8,6 +8,8 @@
 
         "baseUrl": "./source",
         "paths": {
+            "@api": ["api/index"],
+            "@api/*": ["api/*"],
             "@components/*": ["components/*"],
             "@pages/*": ["pages/*"]
         }

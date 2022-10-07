@@ -8,7 +8,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { routes } from './routes';
 
 const router = createBrowserRouter(
-    routes.map((route) => ({
+    Object.values(routes).map((route) => ({
         path: route.path,
         element: route.lazy
             ? createElement(lazy(route.lazy))

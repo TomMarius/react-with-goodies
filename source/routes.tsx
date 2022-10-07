@@ -6,9 +6,13 @@ interface Route {
     lazy?: () => Promise<{ default: () => ReactElement }>;
 }
 
-export const routes: Route[] = [
-    {
+interface Routes {
+    [key: string]: Route;
+}
+
+export const routes: Routes = {
+    home: {
         path: '/',
         lazy: () => import('@pages/home'),
     },
-];
+};

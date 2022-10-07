@@ -11,6 +11,7 @@
             "@api": ["api/index"],
             "@api/*": ["api/*"],
             "@components/*": ["components/*"],
+            "@hooks/*": ["hooks/*"],
             "@pages/*": ["pages/*"]
         }
     }

@@ -1,6 +1,6 @@
 import { type ReactElement } from 'react';
 
-interface Route {
+export interface Route {
     path: string;
     element?: ReactElement;
     lazy?: () => Promise<{ default: () => ReactElement }>;

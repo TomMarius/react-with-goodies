@@ -1,20 +1,12 @@
 import './global.css';
 
-import { createElement, lazy } from 'react';
 import { createRoot } from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { routes } from './routes';
 
-const router = createBrowserRouter(
-    Object.values(routes).map((route) => ({
-        path: route.path,
-        element: route.lazy
-            ? createElement(lazy(route.lazy))
-            : route.element ?? <></>,
-    })),
-);
+const router = createBrowserRouter(Object.values(routes));
 
 createRoot(document.getElementById('root')!).render(
     <QueryClientProvider client={new QueryClient()}>

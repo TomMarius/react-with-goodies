@@ -1,14 +1,9 @@
-import { type ReactElement } from 'react';
+import { createElement, lazy } from 'react';
+import { type RouteObject } from 'react-router-dom';
 
-export interface Route {
-    path: string;
-    element?: ReactElement;
-    lazy?: () => Promise<{ default: () => ReactElement }>;
-}
-
-export const routes: Record<string, Route> = {
+export const routes: Record<string, RouteObject> = {
     home: {
         path: '/',
-        lazy: () => import('@pages/home'),
+        element: createElement(lazy(() => import('@pages/home'))),
     },
 };

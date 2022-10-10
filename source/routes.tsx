@@ -6,11 +6,7 @@ interface Route {
     lazy?: () => Promise<{ default: () => ReactElement }>;
 }
 
-interface Routes {
-    [key: string]: Route;
-}
-
-export const routes: Routes = {
+export const routes: Record<string, Route> = {
     home: {
         path: '/',
         lazy: () => import('@pages/home'),

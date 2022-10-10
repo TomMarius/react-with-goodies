@@ -6,13 +6,12 @@
         "moduleResolution": "Node",
         "jsx": "react-jsx",
 
-        "baseUrl": "./source",
         "paths": {
-            "@api": ["api/index"],
-            "@api/*": ["api/*"],
-            "@components/*": ["components/*"],
-            "@hooks/*": ["hooks/*"],
-            "@pages/*": ["pages/*"]
+            "@api": ["./source/api/index"],
+            "@api/*": ["./source/api/*"],
+            "@components/*": ["./source/components/*"],
+            "@hooks/*": ["./source/hooks/*"],
+            "@pages/*": ["./source/pages/*"]
         }
     }
 }

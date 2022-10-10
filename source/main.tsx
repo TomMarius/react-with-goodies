@@ -2,11 +2,9 @@ import './global.css';
 
 import { createRoot } from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { RouterProvider } from 'react-router-dom';
 
-import { routes } from './routes';
-
-const router = createBrowserRouter(Object.values(routes));
+import { router } from './router';
 
 createRoot(document.getElementById('root')!).render(
     <QueryClientProvider client={new QueryClient()}>
